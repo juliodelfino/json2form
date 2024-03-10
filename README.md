@@ -5,6 +5,8 @@ Mainly written for client-side JavaScript coding.
 
 Demo page: http://jdelfino.com/json2form/
 
+Please refer to the "Examples" section below for sample JSON data and schema when exploring the demo page.
+
 ---
 ## Requirements
  - jQuery
