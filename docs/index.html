@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Json2Form is the easiest way to convert any JSON data into an HTML form.">
+        <meta name="author" content="Julius Delfino">
+        <title>Json2Form</title>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://raw.githubusercontent.com/juliodelfino/json2form/main/json2form.js"></script>
+    </head>
+    <style>
+        #table-main tbody {
+            width: 100%;
+            vertical-align: top;
+        }
+        textarea {
+            width: 100%;
+            resize: vertical;
+        }
+        #html-container {
+            height: 70vh;
+            padding: 10px;
+        }
+        #html-form {
+            overflow: auto;
+        }
+    </style>
+    <body>
+        <h1>Json2Form - The easiest JSON-to-HTML-form converter</h1>
+        <table id="table-main">
+            <tr>
+                <td style="width: 30%">
+                    <h4>JSON Data</h4>
+                    <textarea id="text-json-data" rows="5"></textarea>
+                    <h4>JSON Schema</h4>
+                    <p>If empty, clicking "Build form" will populate this field.</p>
+                    <textarea id="text-json-schema" rows="5"></textarea>
+                    <br>
+                    <button id="btn-build-form">Build form</button>
+                </td>
+                <td id="html-container">
+                    <div id="html-form">
+                    </div>
+                    <br>
+                    <button id="btn-save-json">Save</button>
+                    <p>Clicking the "Save" button will update the "JSON Data" field.</p>
+                </td>
+            </tr>
+        </table>
+    </body>
+    <script>
+        const DIV_ID = "my_div";
+        const J2F = new Json2Form();
+        $(function() {
+            $("#btn-build-form").click(function(){
+                let jsonStr = $("#text-json-data").val();
+                let jsonObj = JSON.parse(jsonStr);
+
+                var schema = null;
+                if (!$("#text-json-schema").val()) {
+                    schema = J2F.generateSchema(jsonObj);
+                } else {
+                    schema = JSON.parse($("#text-json-schema").val());
+                }
+                $("#text-json-schema").val(JSON.stringify(schema, null, 2));
+                $("#text-json-data").val(JSON.stringify(jsonObj, null, 2));
+                $("#html-form").html(J2F.buildHtml(jsonStr, DIV_ID, schema));
+                J2F.registerEvents("#html-form");
+            });
+            $("#btn-save-json").click(function(){
+                $("#text-json-data").val(JSON.stringify(J2F.extractJson(DIV_ID), null, 2));
+            });
+        });
+    </script>
+</html>
