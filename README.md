@@ -2,7 +2,8 @@
 Json2Form is the easiest way to convert any JSON data into an HTML form.
 Simply import `json2form.js` file from this repository into your HTML headers.
 Mainly written for client-side JavaScript coding.
-Demo page:
+
+Demo page: http://jdelfino.com/json2form/
 
 ---
 ## Requirements
