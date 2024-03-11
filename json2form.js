@@ -150,11 +150,11 @@ class Json2Form {
     }
 
     asArrayItem(htmlUi, valType, key) {
-        let deleteBtn = " <button class='btn-del-json-ui'>x</button>";
+        let deleteBtn = "<button class='btn-del-json-ui'>x</button>";
         if (valType === "object") {
-            return "<div class='array-item' style='border: solid 0.5px'>" + htmlUi + deleteBtn + "</div>";
+            return "<div class='array-item' style='border: solid 0.5px; white-space: nowrap'>" + htmlUi + deleteBtn + "</div>";
         } else {
-            return "<div class='array-item' style='display: inline; margin-right: 10px'>" + htmlUi + deleteBtn + "</div>";
+            return "<div class='array-item' style='display: inline; margin-right: 10px; white-space: nowrap'>" + htmlUi + deleteBtn + "</div>";
         }
     }
 
