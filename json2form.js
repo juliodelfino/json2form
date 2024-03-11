@@ -95,6 +95,7 @@ class Json2Form {
         let self = this;
         let xpath = parentXPath + "/" + key;
         var text = "<table class='table " + key + "'>"
+        if (!objVal) objVal = {};
         Object.keys(schema.properties).forEach(function(x){
             let cSchema = schema.properties[x];
             let elemType = cSchema.type;
