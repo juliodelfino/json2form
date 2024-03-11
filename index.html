@@ -25,6 +25,9 @@
         #html-form {
             overflow: auto;
         }
+        #form-actions {
+            display: none;
+        }
     </style>
     <body>
         <h1>Json2Form - The easiest JSON-to-HTML-form converter</h1>
@@ -44,8 +47,10 @@
                     <div id="html-form">
                     </div>
                     <br>
-                    <button id="btn-save-json">Save</button>
-                    <p>Clicking the "Save" button will update the "JSON Data" field.</p>
+                    <div id="form-actions">
+                        <button id="btn-save-json">Save</button>
+                        <p>Clicking the "Save" button will update the "JSON Data" field.</p>
+                    </div>
                 </td>
             </tr>
         </table>
@@ -68,6 +73,7 @@
                 $("#text-json-data").val(JSON.stringify(jsonObj, null, 2));
                 $("#html-form").html(J2F.buildHtml(jsonStr, DIV_ID, schema));
                 J2F.registerEvents("#html-form");
+                $("#form-actions").show();
             });
             $("#btn-save-json").click(function(){
                 $("#text-json-data").val(JSON.stringify(J2F.extractJson(DIV_ID), null, 2));
